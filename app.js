@@ -4,19 +4,26 @@ function sortear(){
     let limite_max = parseInt(document.getElementById('ate').value);
     let lista_de_sorteados = [];
     
-    for (let i = 0; i < quantidade; i++) {
-        let numero = numero_aleatorio(limite_min, limite_max);
-        while (lista_de_sorteados.includes(numero)) {
-            numero = numero_aleatorio(limite_min, limite_max)
-        }
-
-        lista_de_sorteados.push(numero);
-    }
-    document.getElementById('resultado').innerHTML = `<label class="texto__paragrafo">Números sorteados: ${lista_de_sorteados}</label>`;
+    if (limite_max > limite_min) {
+        for (let i = 0; i < quantidade; i++) {
+            let numero = numero_aleatorio(limite_min, limite_max);
+            while (lista_de_sorteados.includes(numero)) {
+                numero = numero_aleatorio(limite_min, limite_max)
+            }
     
-    inverter_status_botao("btn-reiniciar");
-    inverter_status_botao("btn-sortear");
+            lista_de_sorteados.push(numero);
+        }
+        document.getElementById('resultado').innerHTML = `<label class="texto__paragrafo">Números sorteados: ${lista_de_sorteados}</label>`;
+        
+        inverter_status_botao("btn-reiniciar");
+        inverter_status_botao("btn-sortear");     
+    } else {
+        document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">O número mínimo não deve ser maior que o número máximo!</label>';
+    }
+
+   
 }
+
 function numero_aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
