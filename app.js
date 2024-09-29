@@ -4,7 +4,9 @@ function sortear(){
     let limite_max = parseInt(document.getElementById('ate').value);
     let lista_de_sorteados = [];
     
-    if (limite_max > limite_min) {
+    let intervalo = limite_max - limite_min + 1;
+    
+    if (limite_max > limite_min && intervalo >= quantidade) {
         for (let i = 0; i < quantidade; i++) {
             let numero = numero_aleatorio(limite_min, limite_max);
             while (lista_de_sorteados.includes(numero)) {
@@ -18,7 +20,7 @@ function sortear(){
         inverter_status_botao("btn-reiniciar");
         inverter_status_botao("btn-sortear");     
     } else {
-        document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">O número mínimo não deve ser maior que o número máximo!</label>';
+        document.getElementById('resultado').innerHTML = '<label class="texto__paragrafo">Favor, informar um intervalo e quantidade de números válidos!</label>';
     }
 
    
